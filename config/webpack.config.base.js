@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	entry: path.resolve(__dirname, '../src/index'),
 	output: {
-		filename: '[name].js',
+		filename: 'app.[contenthash:8].js',
 		path: path.resolve(__dirname, '../dist'),
 	},
 	resolve: {
@@ -17,33 +17,38 @@ module.exports = {
 	optimization: {
 		splitChunks: {
 			chunks: "all",
+			minChunks: 1,
+			minSize: 30000,
+			maxAsyncRequests: 30,
+			maxInitialRequests: 30,
 			cacheGroups: {
 				echarts: {
-					test: /[echarts]/,
-					filename: 'echarts.js',
-					priority: 11,
+					test: /echarts/,
+					filename: 'echarts.[contenthash:8].js',
+					priority: 10,
 					enforce: true,
 				},
 				'react-dom': {
 					test: /react-dom/,
-					filename: 'react-dom.js',
-					priority: 10,
+					filename: 'react-dom.[contenthash:8].js',
+					priority: 9,
 				},
-				moment: {
-					test: /moment/,
-					filename: 'moment.js',
-					priority: 10,
-				},
-				vendors: {
-					test: /[\/]node_modules[\/]/,
-					filename: 'vendors.js',
-					priority: -10,
+				lodash: {
+					test: /lodash/,
+					filename: 'lodash.[contenthash:8].js',
+					priority: 8,
 				},
 				default: {
-					filename: 'common.js',
 					reuseExistingChunk: true,
+					filename: 'bundle.[contenthash].js',
 					priority: -20,
-				}
+				},
+				defaultVendors: {
+					test: /[\\/]node_modules[\\/]/,
+					filename: 'vendors.[contenthash:8].js',
+					priority: -10,
+					reuseExistingChunk: true,
+				},
 			}
 		},
 	},

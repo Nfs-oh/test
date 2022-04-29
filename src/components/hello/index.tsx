@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import echarts from 'echarts';
+// import _ from 'lodash';
 
 type IProps = Record<string, any>;
 

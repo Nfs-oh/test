@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import echarts from 'echarts';
+import get from 'lodash/get';
 import App from './app';
-import { double } from './utils/index';
 
-console.log(double(2));
 
 ReactDom.render(<App />, document.getElementById('root'));
+
+

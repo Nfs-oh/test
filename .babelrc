@@ -1,5 +1,8 @@
 {
 	"presets": [
+		["@babel/preset-env", {
+			"useBuiltIns": true
+		}],
 		"@babel/preset-react"
 	],
 	"exclude": "/node_modules/"
