@@ -11,10 +11,12 @@
   	"allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "*": ["*"],
+      "@/*": ["src/*"]
     }
   },
   "include": [
-    "./src/**/*"
-  ]
+    "src/**/*"
+  ],
+  "exclude": ["node_modules", "config", "dist"]
 }
